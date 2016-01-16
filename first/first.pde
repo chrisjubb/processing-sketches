@@ -7,14 +7,15 @@ void setup() {
   size(480, 480);
   setupBackground();
   stroke(200);
+  rectMode(CENTER);
 }
 
 float f = 0;
 
 void draw() {
   
-   float mx = 1.0f - (mouseX / (float)width);
-   float my = 1.0f - (mouseY / (float)height);
+   float mx = (1.0f - (mouseX / (float)width)) * 2.0;
+   float my = (1.0f - (mouseY / (float)height)) * 2.0;
    
    float sx = width / (4 * mx);
    float sy = height / (4 * my);
@@ -24,12 +25,18 @@ void draw() {
     
     f += 0.02;
     
-    stroke(sin01(f * 0.5) * 255, sin01(f * 0.8) * 255, sin01(f * 0.2) * 255);
+    float cx = sin01(f * 0.5) * 255;
+    float cy = sin01(f * 0.8) * 255;
+    float cz = sin01(f * 0.2) * 255;
+    stroke(cx, cy, cz, 50);
+    fill(cx * 2, cy * 2, cz * 2);
     
     line(0,0, x, y);
     line(width, 0, x, y);
     line(0, height, x, y);
     line(width, height, x, y);
+    
+    rect(x, y, 10, 10);
   }
 }
 
